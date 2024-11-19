@@ -27,18 +27,6 @@ $ forge build
 $ forge test
 ```
 
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
 ### Anvil
 
 ```shell
@@ -47,9 +35,18 @@ $ anvil
 
 ### Deploy
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+ローカルのanvilにデプロイ:
+
+.envファイルを作成し秘密鍵を記述
 ```
+PRIVATE_KEY=・・・
+```
+
+デプロイスクリプトの実行
+```shell
+$ forge script script/Deployment.s.sol --rpc-url http://127.0.0.1:8545 --broadcast
+```
+
 
 ### Cast
 
