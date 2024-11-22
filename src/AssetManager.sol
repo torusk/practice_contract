@@ -10,6 +10,12 @@ contract AssetManager {
 
     // registAddress関数：入力されたアドレスをリストに追加
     function registAddress(address addr) public {
+        // 配列内にアドレスが存在するかチェック
+        for (uint i = 0; i < registeredAddresses.length; i++) {
+            if(registeredAddresses[i] == addr){
+                revert("Address is already registered");
+            }
+        }
         // アドレスを配列に追加
         registeredAddresses.push(addr);
 
