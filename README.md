@@ -18,19 +18,19 @@ https://book.getfoundry.sh/
 ### Build
 
 ```shell
-$ forge build
+forge build
 ```
 
 ### Test
 
 ```shell
-$ forge test
+forge test
 ```
 
 ### Anvil
 
 ```shell
-$ anvil
+anvil
 ```
 
 ### Deploy
@@ -44,20 +44,20 @@ PRIVATE_KEY=・・・
 
 デプロイスクリプトの実行
 ```shell
-$ forge script script/Deployment.s.sol --rpc-url http://127.0.0.1:8545 --broadcast
+forge script script/Deployment.s.sol --rpc-url http://127.0.0.1:8545 --broadcast
 ```
 
 
 ### Cast
 
 ```shell
-$ cast <subcommand>
+cast <subcommand>
 ```
 
 ### Help
 
 ```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+forge --help
+anvil --help
+cast --help
 ```

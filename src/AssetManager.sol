@@ -65,4 +65,50 @@ contract AssetManager {
     function getAsset(address addr) public view returns (uint256) {
         return assets[addr];
     }
+
+    mapping(address => bytes[]) private documentHashes;
+
+    // addAsset関数：資産を登録または更新する
+    function addAssetWithHash(uint256 amount, bytes calldata hashvalue) public {
+        // 呼び出し元アドレスが登録されているか確認
+        bool isRegistered = false;
+        for (uint i = 0; i < registeredAddresses.length; i++) {
+            if (registeredAddresses[i] == msg.sender) {
+                isRegistered = true;
+                break;
+            }
+        }
+
+        if (!isRegistered) {
+            revert("Address is not registered");
+        }
+
+        // ハッシュが登録されているか確認
+        bool isHashRegistered = false;
+        for (uint i = 0; i < documentHashes[msg.sender].length; i++) {
+            for (uint j = 0; j < 32; j++) {
+                if (documentHashes[msg.sender][i][j] != hashvalue[j]) {
+                    break;
+                }
+                if (j == 31) {
+                    isHashRegistered = true;
+                }
+            }
+            if (isHashRegistered) {
+                break;
+            }
+        }
+        if (isHashRegistered) {
+            revert("Hash is already registered");
+        }
+
+        // 資産を追加または更新
+        assets[msg.sender] += amount;
+
+        // ハッシュを配列に追加
+        documentHashes[msg.sender].push(hashvalue);
+
+        // イベントを発火
+        emit AssetUpdated(msg.sender, assets[msg.sender]);
+    }
 }
