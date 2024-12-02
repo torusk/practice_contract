@@ -111,4 +111,8 @@ contract AssetManager {
         // イベントを発火
         emit AssetUpdated(msg.sender, assets[msg.sender]);
     }
+
+    function getHash(address addr) public view returns (bytes[] memory) {
+        return documentHashes[addr];
+    }
 }
