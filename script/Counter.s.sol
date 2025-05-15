@@ -23,6 +23,5 @@ contract CounterScript is Script {
         // 現在の number の値を取得
         uint256 currentNumber = counter.number();
         console.log("Current number:", currentNumber);
-
     }
 }
